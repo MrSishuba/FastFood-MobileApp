@@ -1,0 +1,28 @@
+// For information on how to create your own theme, please see:
+// http://ionicframework.com/docs/theming/
+
+:root {
+    --ion-background-color: #ffffff;
+    --ion-text-color: #3dc2ff; /* Light blue text */
+    /* Add other global variables as needed */
+}
+
+/* For iOS Dark Theme */
+.ios body {
+    --ion-background-color: #ffffff;
+    --ion-text-color: #3dc2ff; /* Light blue text */
+}
+
+/* For Material Design Dark Theme */
+.md body {
+    --ion-background-color: #ffffff;
+    --ion-text-color: #ff3300; /* Light blue text */
+}
+
+/* Override tab colors */
+ion-tab-button {
+    --color-selected: var(--ion-text-color);
+    --color-selected-rgb: 61, 194, 255;
+    --color: var(--ion-color-medium);
+    --color-rgb: 146, 148, 156;
+}

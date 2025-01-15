@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      <ion-icon name="arrow-undo-circle-outline" (click)="dismiss()"></ion-icon>
+      Need Help?</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding">
+  <ion-button id="open-custom-dialog" expand="block">See how to use our app</ion-button>
+
+  <ion-modal id="example-modal" #modal trigger="open-custom-dialog">
+    <ng-template>
+      <div class="wrapper">
+        <h1>
+          <ion-icon name="arrow-undo-circle-outline" (click)="dismiss()"></ion-icon>
+          Getting started</h1>
+
+        <ion-list lines="none">
+          <ion-item button="true" detail="false" (click)="modal.dismiss()">
+            <ion-label><p>
+                <b>Home Page:</b>
+                Browse through four restaurants.
+                Click on a restaurant to automatically add an order to your Cart.<br><br>
+
+                <b>Seacrh Page:</b>
+                Search for restaurants by name, dish type, ratings, distance, or price.
+                Click on a restaurant to add an order to your Cart.<br><br>
+
+                <b>Cart Page:</b>
+                View your placed orders with prices.
+                Add delivery instructions.
+                Click "Make Payment" to confirm and see a success message.<br><br>
+
+                <b>Account Page:</b>
+                Check your account details and past orders.
+                Edit your account information if needed.
+                Use "Reorder" to quickly add a previous order to your Cart.
+                Click "Get Help" for assistance via a pop-up message.<br>
+            </p>
+            </ion-label>
+          </ion-item>
+        </ion-list>
+      </div>
+    </ng-template>
+  </ion-modal>
+</ion-content>

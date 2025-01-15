@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Find Your Feast</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  
+  <!-- made Use of $event.detail.value to pass the search input value -->
+  <ion-searchbar (ionChange)="onSearchChange($event.detail.value)"></ion-searchbar>
+
+  <ion-list *ngIf="isLoading">
+    <ion-item>
+      <ion-label>Loading...</ion-label>
+    </ion-item>
+  </ion-list>
+
+  <ion-list *ngIf="restaurants.length > 0">
+    <ion-item *ngFor="let restaurant of restaurants" (click)="handleRestaurantClick(restaurant)">
+      <ion-avatar slot="start">
+        <img [src]="restaurant.image">
+      </ion-avatar>
+      <ion-label>
+        <h2>{{ restaurant.name }}</h2>
+        <p>{{ restaurant.cuisine }}</p>
+        <p>Rating: {{ restaurant.rating }}</p>
+        <p>Order: {{ restaurant.dishname }}</p>
+        <p>Price:R{{ restaurant.price }}</p>     
+        <p>Address:{{ restaurant.address }}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+  <ion-list *ngIf="restaurants.length === 0 && !isLoading">
+    <ion-item>
+      <ion-label>No restaurants found.</ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>
+
+

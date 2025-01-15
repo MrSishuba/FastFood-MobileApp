@@ -1,0 +1,113 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title mode="md">
+      <span style="display: flex; align-items: center;">
+        <img src="https://cdn-icons-png.flaticon.com/512/3246/3246710.png" alt="Fast Feasts Logo" style="height: 30px; width: 30px; margin-right: 8px;">
+        <ion-text color="primary">My Fast Feasts Cart</ion-text>
+        <ion-icon name="chevron-down-outline" style="color:rgb(0, 0, 218);"></ion-icon>
+      </span>
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+
+
+
+<ion-content>
+
+  <ion-list lines="none" class="borderBottomSmall">
+    <ion-item *ngFor="let item of cartItems" lines="none">
+      <ion-thumbnail slot="start">
+        <ion-img [src]="item.image"></ion-img>
+      </ion-thumbnail>
+      <ion-label>
+        <ion-text><h4>{{ item.name }}</h4></ion-text>
+        <ion-note>{{ item.address }}</ion-note> <!-- Display item address -->
+      </ion-label>
+    </ion-item>
+    <ion-item *ngFor="let item of cartItems" lines="none" class="borderBottomSmall" style="font-size: medium; color: black;">
+      <!-- Icon -->
+      <ion-icon slot="start" name="checkbox-outline" color="success"></ion-icon> 
+      <!-- Dish name -->
+      <ion-text style="font-size: smaller;">{{ item.dishname }}</ion-text> 
+      <!-- Incrementor -->
+      <ion-buttons slot="end" style="border: 1px solid black; border-radius: 5px;">
+        <ion-button fill="clear" style="border-right: none;">-</ion-button> <!-- Minus button -->
+        <ion-text style="border-right: none; padding: 5px;">1</ion-text> <!-- Current quantity -->
+        <ion-button fill="clear" style="border-left: none;">+</ion-button> <!-- Plus button -->
+      </ion-buttons> 
+      <!-- Price -->
+      <ion-text slot="end">R{{ item.price }}</ion-text> 
+    </ion-item>
+  </ion-list>
+
+   <!-- Success message -->
+   <div *ngIf="showSuccessMessage" class="ion-padding">
+    <ion-alert color="success">
+      <ion-title>Payment Successful</ion-title>
+      <ion-content>
+        <p>Your payment was successful!</p>
+      </ion-content>
+    </ion-alert>
+  </div>
+
+  <ion-item lines="none" class="borderBottom" *ngFor="let item of cartItems">
+    <ion-icon slot="start" name="list-outline"></ion-icon>
+    <ion-input type="text" placeholder="Any instructions? We will try our best" [(ngModel)]="deliveryInstructions"></ion-input>
+  </ion-item>
+
+  <ion-list class="borderBottom">
+    <ion-list-header>
+      <ion-label color="tertiary">Bill Details</ion-label>
+    </ion-list-header>
+    <ion-item lines="none">
+      <ion-label color="dark">Item Total</ion-label>
+      <ion-text slot="end" color="dark">R{{ calculateItemTotal() }}</ion-text>
+    </ion-item>
+    <ion-item lines="full">
+      <ion-label color="dark">Delivery fee</ion-label>
+      <ion-text slot="end" color="dark">R{{ deliveryFee }}</ion-text>
+    </ion-item>
+    <ion-item lines="none">
+      <ion-label color="dark">To Pay</ion-label>
+      <ion-text slot="end" color="dark"><h5>R{{ calculateTotalToPay() }}</h5></ion-text>
+    </ion-item>
+  </ion-list>
+
+</ion-content>
+
+<ion-footer >
+  <ion-toolbar>  
+    <ion-item lines="none">
+      <ion-button slot="end" fill="clear">CHANGE</ion-button>
+      <ion-icon slot="start" name="home-outline"></ion-icon>
+      <ion-label>
+        <h5>Deliver to Office</h5>
+        <ion-text color="medium"><p>Bishop Row, Emerald Sky Towers floor 46</p></ion-text>
+      </ion-label>
+    </ion-item>
+    
+    <ion-row style="height: 50px;">
+      <!-- Column 1 -->
+      <ion-col size="6" class="ion-no-padding ion-align-items-center">
+        <ion-item lines="none" color="primary" class="ion-no-padding">
+          <ion-label style="padding-bottom: 10px;padding-left: 10px;">
+            <h6 style="font-size: smaller; color: white; margin-bottom: 0;">R{{ calculateTotalToPay() }}</h6>
+            <ion-text color="light" style="font-size: smaller;">
+              VIEW DETAILED BILL
+              <ion-icon name="chevron-down-outline" style="margin-left: 5px;"></ion-icon>
+            </ion-text>
+          </ion-label>
+        </ion-item>
+      </ion-col>
+    
+      <!-- Column 2 -->
+      <ion-col size="6" class="ion-text-center colStyle" style="background-color: rgb(0, 128, 0);">
+        <ion-button color="white" fill="clear" style="color: rgb(255, 255, 255);" (click)="makePayment()">MAKE PAYMENT</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-toolbar>
+</ion-footer>

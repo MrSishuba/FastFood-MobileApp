@@ -1,0 +1,63 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-title>My Fast Feast Account</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list class="borderBottom">
+    <ion-item lines="full">
+      <ion-label>
+        <ion-text class="ion-text-uppercase">
+          <h4>{{ profile.name }}</h4>
+        </ion-text>
+        <p>{{ profile.phoneNumber }} | {{ profile.email }}</p>
+      </ion-label>
+      <ion-button fill="clear" (click)="goToEditPage()">
+        <ion-icon name="create-outline" color="primary"></ion-icon>
+      </ion-button>
+    </ion-item>
+    <ion-item lines="none" detail="true" [routerLink]="['/', 'tabs', 'address']">
+      <ion-icon name="home-outline" slot="start" color="dark"></ion-icon>
+      <h5>Manage Addresses</h5>
+    </ion-item>
+  </ion-list>
+
+  <ion-list>
+    <ion-list-header>
+      <ion-label color="primary">PAST ORDERS</ion-label>
+    </ion-list-header>
+
+    <!-- Display "No Orders Placed Yet" message if there are no past orders -->
+    <ion-text class="ion-text-center" *ngIf="!pastOrders || pastOrders.length === 0">
+      <p>No Orders Placed Yet</p>
+    </ion-text>
+
+    <!-- Iterate over pastOrders and display order details -->
+    <ng-container *ngFor="let order of pastOrders">
+      <ion-item style="color: rgb(114, 116, 117);">
+        <!-- Display order name, address, and price -->
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <div>
+            <p>
+              <b>{{ order.name }} </b><span style="float:right">Delivered <ion-icon name="checkmark-circle" color="success" slot="end"></ion-icon></span><br>
+              {{ order.address }}<br>
+              R{{ order.price }}
+            </p>
+            <div style="float:right">
+              {{order.dishname}} x 1
+              <ion-button color="danger" style="margin-right: 5px;" (click)="reorder(order)">Reorder</ion-button>
+              <ion-button color="secondary" (click)="getHelp()">Get Help</ion-button>
+            
+            </div>
+          </div>
+          
+        </div>
+      
+      </ion-item>
+      
+      <!-- Divider between orders -->
+      <ion-item-divider></ion-item-divider>
+    </ng-container>
+  </ion-list>
+</ion-content>

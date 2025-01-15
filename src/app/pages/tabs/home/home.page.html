@@ -1,0 +1,63 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title mode="md"> 
+      <!-- md=material design -->
+      <span style="display: flex; align-items: center;">
+        <img src="https://banner2.cleanpng.com/20210101/vtg/transparent-order-icon-food-delivery-icon-meal-icon-5fefa9ce457584.3222649016095420942845.jpg" alt="Fast Feasts Logo" style="height: 30px; width: 30px; margin-right: 8px;">
+        Fast Feasts
+        <ion-icon name="chevron-down-outline" style="color:rgb(218, 0, 0)"></ion-icon>
+      </span>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="borderBottom">
+    <swiper-container [modules]="swiperModules"
+      [slidesPerView]="1.2"
+      [CenteredSlides]="true"
+      [autoplay]="true"
+      [pagination]="{clickable:true, dynamicBullets: true}"
+      [spaceBetween]="20">
+      
+      <swiper-slide>
+        <img src="https://img.jakpost.net/c/2020/09/13/2020_09_13_104172_1599983230._large.jpg">
+      </swiper-slide>
+      <swiper-slide>
+        <img src="https://www.foodandwine.com/thmb/11IocKmBT_guH3UiwsSlecon0sY=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/200610-r-xl-red-snapper-with-citrus-and-fennel-salad-b38cb7be5eb34f58b69585ba4b51b146.jpg">
+      </swiper-slide>
+      <swiper-slide>
+        <img src="https://www.foodandwine.com/thmb/ClPnka2WSnl5PtrMYOjlmXsXw1k=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/escovitch-fish-FT-RECIPE0920-8a733638c2ba4b72b48737782fa616c2.jpg">
+      </swiper-slide>
+      <swiper-slide>
+        <img src="https://urbanblisslife.com/wp-content/uploads/2016/10/Rigatoni-with-Italian-Sausage-2022-FEATURE.jpg">
+      </swiper-slide>
+      
+    </swiper-container>
+  </div>
+  
+  <ion-list>
+    <ion-list-header class="ion-margin-bottom">
+      <ion-label>
+        <h4 style="color:#030000">Restaurants Nearby</h4>
+        <p>Explore exclusive flavors available near you</p>
+      </ion-label>
+    </ion-list-header>
+    <ion-item *ngFor="let item of cartItems" (click)="handleItemClick(item)" lines="none">
+      <ion-thumbnail slot="start">
+        <img [src]="item.image" />
+      </ion-thumbnail>
+      <ion-label style="color:#840000">
+        <h4 style="color:#840000">{{ item.name }}</h4>
+        <ion-text color="medium">
+          <p class="pStyle">{{ item.cuisine }}</p>
+        </ion-text>
+        <span style="color:#eef604">{{ item.rating }} <ion-icon name="star"></ion-icon>.</span>
+        {{ item.time }} .R{{ item.price }}
+        <ion-text color="tertiary">
+          <p class="distance" style="color:#840000">{{ item.distance }}</p>
+        </ion-text>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>

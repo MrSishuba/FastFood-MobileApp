@@ -1,0 +1,29 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-icon name="arrow-undo-circle-outline" (click)="navigateBack()"></ion-icon>
+    <ion-title>
+      Edit Profile
+      <ion-icon name="person-circle-outline"></ion-icon>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <ion-list>
+    <ion-item>
+      <ion-label position="stacked" color="dark">Name</ion-label>
+      <ion-input type="text" [(ngModel)]="profile.name"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked" color="dark">Phone Number</ion-label>
+      <ion-input type="text" [(ngModel)]="profile.phoneNumber"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked" color="dark">Email</ion-label>
+      <ion-input type="email" [(ngModel)]="profile.email"></ion-input>
+    </ion-item>
+  </ion-list>
+
+  <ion-button expand="block" (click)="updateProfile()">Update</ion-button>
+</ion-content>
